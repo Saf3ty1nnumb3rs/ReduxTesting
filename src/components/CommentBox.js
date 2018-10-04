@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from 'actions'
+import requireAuth from 'components/requireAuth'
 
 class CommentBox extends Component {
 
@@ -22,15 +23,19 @@ class CommentBox extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <h4>Add a Comment</h4>
-                <textarea name="" id="" cols="30" rows="10" value={this.state.comment} onChange={this.handleChange} />
-                <div>
-                    <button>Submit Comment</button>
-                </div>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <h4>Add a Comment</h4>
+                    <textarea name="" id="" cols="30" rows="10" value={this.state.comment} onChange={this.handleChange} />
+                    <div>
+                        <button>Submit Comment</button>
+                    </div>
+                </form>
+                <button className="fetch-comments" onClick={this.props.fetchComments}>Fetch Comments</button>
+            </div>
+            
         );
     }
 }
-
-export default connect( null, actions )(CommentBox);
+//connect take pass action creators as props down to the component
+export default connect( null, actions )(requireAuth(CommentBox));

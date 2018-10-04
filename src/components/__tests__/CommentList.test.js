@@ -9,7 +9,7 @@ let wrapped;
 
 beforeEach(() => {
     const initialState = {
-        comments: ['Comment 1', 'Comment2']
+        comments: ['Comment 1', 'Comment 2']
     };
 
 
@@ -32,5 +32,6 @@ it('creates one LI per comment', () => {
 it('shows the text for each comment', () => {
     
     expect(wrapped.render().text()).toContain('Comment 1');
+    expect(wrapped.render().text()).toContain('Comment 2');
                                
 })
